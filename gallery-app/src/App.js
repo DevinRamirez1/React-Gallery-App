@@ -4,6 +4,9 @@ import logo from './logo.svg';
 import './App.css';
 import apiKey from './Components/Config';
 
+import Home from './Components/Home';
+import NotFound from './Components/NotFound';
+
 class App extends Component {
   
   render() {
@@ -14,11 +17,11 @@ class App extends Component {
           <Header />
 
           <Switch>
-            <Route></Route>
-            <Route></Route>
-            <Route></Route>
-            <Route></Route>
-            <Route></Route>
+            <Route exact path="/" component={Home} />
+            <Route path="/cloud" component={}/>
+            <Route path="/mountain" component={}/>
+            <Route path="/dogs" component={}/>
+            <Route component={NotFound}/>
           </Switch>
         </div>
       </BrowserRouter>
