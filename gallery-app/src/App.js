@@ -5,6 +5,7 @@ import './App.css';
 import apiKey from './Components/Config';
 
 import Home from './Components/Home';
+import Header from './Components/Header';
 import NotFound from './Components/NotFound';
 
 class App extends Component {
