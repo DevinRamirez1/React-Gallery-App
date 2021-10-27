@@ -9,6 +9,57 @@ import Header from './Components/Header';
 import NotFound from './Components/NotFound';
 
 class App extends Component {
+
+  constructor() {
+    super();
+    this.state ={
+      clouds: [],
+      mountains: [],
+      dogs: [],
+      query: [],
+      loading: true,
+      search: ""
+    }
+  }
+
+  getClouds() {
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${config}&text=${query}&per_page=24&format=json&nojsoncallback=1`)
+    .then(response => {
+      this.setState ({
+        clouds: response.data.data,
+        loading: false
+      });
+    })
+    .catch(error => {
+      console.log('Error fetching and parsing data', error)
+    });
+  }
+
+  getMountains() {
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${config}&text=${query}&per_page=24&format=json&nojsoncallback=1`)
+    .then(response => {
+      this.setState ({
+        mountains: response.data.data,
+        loading: false
+      });
+    })
+    .catch(error => {
+      console.log('Error fetching and parsing data', error)
+    });
+  }
+
+  getDogs() {
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${config}&text=${query}&per_page=24&format=json&nojsoncallback=1`)
+    .then(response => {
+      this.setState ({
+        dogs: response.data.data,
+        loading: false
+      });
+    })
+    .catch(error => {
+      console.log('Error fetching and parsing data', error)
+    });
+  }
   
   render() {
     return(
@@ -19,8 +70,8 @@ class App extends Component {
 
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/cloud" component={}/>
-            <Route path="/mountain" component={}/>
+            <Route path="/clouds" component={}/>
+            <Route path="/mountains" component={}/>
             <Route path="/dogs" component={}/>
             <Route component={NotFound}/>
           </Switch>
