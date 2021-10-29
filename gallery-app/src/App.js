@@ -18,15 +18,16 @@ class App extends Component {
       dogs: [],
       query: [],
       loading: true,
-      search: ""
+      search: []
     }
   }
 
-  getClouds() {
+  getPics(query) {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${config}&text=${query}&per_page=24&format=json&nojsoncallback=1`)
     .then(response => {
       this.setState ({
-        clouds: response.data.data,
+        query: response.data.data,
+        search: query,
         loading: false
       });
     })
@@ -35,37 +36,17 @@ class App extends Component {
     });
   }
 
-  getMountains() {
-    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${config}&text=${query}&per_page=24&format=json&nojsoncallback=1`)
-    .then(response => {
-      this.setState ({
-        mountains: response.data.data,
-        loading: false
-      });
-    })
-    .catch(error => {
-      console.log('Error fetching and parsing data', error)
-    });
-  }
-
-  getDogs() {
-    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${config}&text=${query}&per_page=24&format=json&nojsoncallback=1`)
-    .then(response => {
-      this.setState ({
-        dogs: response.data.data,
-        loading: false
-      });
-    })
-    .catch(error => {
-      console.log('Error fetching and parsing data', error)
-    });
+  componentDidMount() {
+    const defaultPictures = ["clouds", "mountains", "dogs"];
+    defaultPictures.forEach( search => this.getPics(search, true));
+    this.setState({ loading: false })
   }
   
   render() {
     return(
       <BrowserRouter>
         <div className="container">
-          <SearchForm onSearch={} />
+          <SearchForm onSearch={this.getPics} />
           <Header />
 
           <Switch>
