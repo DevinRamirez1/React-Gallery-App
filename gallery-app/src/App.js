@@ -51,7 +51,7 @@ class App extends Component {
           <Header />
 
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={ () => <Redirect to="/clouds"/>} />
             <Route path="/clouds" component={ () => 
               <PhotoContainer data={clouds} title={"clouds"} /> }/>
             <Route path="/mountains" component={ () => 
