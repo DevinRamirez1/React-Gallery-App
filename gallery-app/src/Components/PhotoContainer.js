@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Photo from './Photo'
 import NotFound from './NotFound'
-import Route from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 class PhotoContainer extends Component {
     componentDidMount() {
