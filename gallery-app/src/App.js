@@ -7,6 +7,7 @@ import apiKey from './Components/Config';
 import Home from './Components/Home';
 import Header from './Components/Header';
 import NotFound from './Components/NotFound';
+import PhotoContainer from './Components/PhotoContainer';
 
 class App extends Component {
 
@@ -51,9 +52,14 @@ class App extends Component {
 
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/clouds" component={}/>
-            <Route path="/mountains" component={}/>
-            <Route path="/dogs" component={}/>
+            <Route path="/clouds" component={ () => 
+              <PhotoContainer data={clouds} title={"clouds"} /> }/>
+            <Route path="/mountains" component={ () => 
+              <PhotoContainer data={mountains} title={"mountains"} /> }/>
+            <Route path="/dogs" component={ () => 
+              <PhotoContainer data={dogs} title={"dogs"} /> }/>
+            <Route path="/:query" render={  () => 
+              <PhotoContainer data={this.state.query} title={this.state.title} /> } />
             <Route component={NotFound}/>
           </Switch>
         </div>
