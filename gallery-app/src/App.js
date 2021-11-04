@@ -26,7 +26,7 @@ class App extends Component {
   }
 
   getPics(query) {
-    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${config}&text=${query}&per_page=24&format=json&nojsoncallback=1`)
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${Config}&text=${query}&per_page=24&format=json&nojsoncallback=1`)
     .then(response => {
       this.setState ({
         query: response.data.data,
