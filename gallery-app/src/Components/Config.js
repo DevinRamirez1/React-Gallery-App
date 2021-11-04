@@ -1,4 +1,3 @@
-import React from 'react';
 
-const apiKey = 'd090a0650864e1d50960bd546d2db0b0';
+const apiKey = '6a103bb7f48f7e09ceea2cedb2224235';
 export default apiKey;
