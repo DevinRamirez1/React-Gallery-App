@@ -14,14 +14,19 @@ class PhotoContainer extends Component {
         const data = this.props.data;
 
         let photos = data.map( (photo) => {
-            return <Photo id={photo.id} server={photo.server} title={photo.title} key={photo.id} />
+            return <Photo id={photo.id} 
+                          server={photo.server} 
+                          secret={photo.secret} 
+                          title={photo.title} 
+                          key={photo.id}       
+                    />
         });
 
         if (data.length !== 0) {
             return (
                 <div className="photo-container">
                     <h2>
-                        {this.props.category.length !== 0 ? `Results - ${this.props.category}` : `Results - ${this.prop.query}`}
+                        Reults for {this.props.title !== 0}
                     </h2>
                     <ul>
                         {photos}
