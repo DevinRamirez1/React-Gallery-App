@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import axios from 'axios'
 import logo from './logo.svg';
 import './App.css';
 import apiKey from './Components/Config';
 
-import Home from './Components/Home';
 import Header from './Components/Header';
+import Config from './Components/Config'
+import SearchForm from './Components/SearchForm';
 import NotFound from './Components/NotFound';
 import PhotoContainer from './Components/PhotoContainer';
 
@@ -53,11 +55,11 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={ () => <Redirect to="/clouds"/>} />
             <Route path="/clouds" component={ () => 
-              <PhotoContainer data={clouds} title={"clouds"} /> }/>
+              <PhotoContainer data={this.state.clouds} title={"clouds"} /> }/>
             <Route path="/mountains" component={ () => 
-              <PhotoContainer data={mountains} title={"mountains"} /> }/>
+              <PhotoContainer data={this.state.mountains} title={"mountains"} /> }/>
             <Route path="/dogs" component={ () => 
-              <PhotoContainer data={dogs} title={"dogs"} /> }/>
+              <PhotoContainer data={this.state.dogs} title={"dogs"} /> }/>
             <Route path="/:query" render={  () => 
               <PhotoContainer data={this.state.query} title={this.state.title} /> } />
             <Route component={NotFound}/>
