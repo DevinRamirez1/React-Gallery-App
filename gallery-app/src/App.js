@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import axios from 'axios'
-import logo from './logo.svg';
 import './App.css';
 import apiKey from './Components/Config';
 
 import Header from './Components/Header';
-import Config from './Components/Config'
 import SearchForm from './Components/SearchForm';
 import NotFound from './Components/NotFound';
 import PhotoContainer from './Components/PhotoContainer';
@@ -25,8 +23,8 @@ class App extends Component {
     }
   }
 
-  getPics(query) {
-    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${Config}&text=${query}&per_page=24&format=json&nojsoncallback=1`)
+  getPics = (query = 'clouds') => {
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&text=${query}&per_page=24&format=json&nojsoncallback=1`)
     .then(response => {
       this.setState ({
         query: response.data.data,
