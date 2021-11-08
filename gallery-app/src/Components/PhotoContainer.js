@@ -27,7 +27,7 @@ class PhotoContainer extends Component {
             return (
                 <div className="photo-container">
                     <h2>
-                        Reults for {this.props.title !== 0}
+                        Results for {this.props.title}
                     </h2>
                     <ul>
                         {photos}
