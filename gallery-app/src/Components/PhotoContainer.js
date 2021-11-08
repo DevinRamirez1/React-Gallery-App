@@ -13,7 +13,7 @@ class PhotoContainer extends Component {
 
     render() {
         const results = this.props.data;
-
+        console.log(results);
         let photos = results.map( (photo) => {
             return <Photo id={photo.id} 
                           server={photo.server} 
