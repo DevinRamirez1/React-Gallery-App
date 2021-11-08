@@ -12,9 +12,9 @@ class PhotoContainer extends Component {
 
 
     render() {
-        const data = this.props.data;
+        const results = this.props.data;
 
-        let photos = data.map( (photo) => {
+        let photos = results.map( (photo) => {
             return <Photo id={photo.id} 
                           server={photo.server} 
                           secret={photo.secret} 
@@ -23,7 +23,7 @@ class PhotoContainer extends Component {
                     />
         });
 
-        if (data.length !== 0) {
+        if (results.length !== 0) {
             return (
                 <div className="photo-container">
                     <h2>
