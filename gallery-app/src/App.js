@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import axios from 'axios'
 import './App.css';
 import apiKey from './Components/Config';
+import {rivers, mountains, dogs} from './Components/DefaultOptions';
 
 import Header from './Components/Header';
 import SearchForm from './Components/SearchForm';
@@ -15,9 +16,6 @@ class App extends Component {
     super();
     this.state ={
       photos: [],
-      clouds: [],
-      mountains: [],
-      dogs: [],
       title: [],
       query: [],
       loading: true,
@@ -31,7 +29,7 @@ class App extends Component {
 
   getPics = (query) => {
     this.setState({loading: true});
-    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&format=rest&auth_token=72157720821088818-eae52052a6d88353&api_sig=8e0b2e89e566af42a28aa17f860e199c`)
+    axios.get(axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`))
     .then(response => {
       this.setState ({
         photos: response.data.photos.photo,
@@ -58,13 +56,13 @@ class App extends Component {
           { (this.state.loading)
           ? <p>loading...</p>
           : <Switch>
-            <Route exact path="/" component={ () => <Redirect to="/clouds"/>} />
-            <Route path="/clouds" component={ () => 
-              <PhotoContainer data={this.state.clouds} title={"clouds"} /> }/>
+            <Route exact path="/" component={ () => <Redirect to="/rivers"/>} />
+            <Route path="/rivers" component={ () => 
+              <PhotoContainer data={rivers} title={"rivers"} /> }/>
             <Route path="/mountains" component={ () => 
-              <PhotoContainer data={this.state.mountains} title={"mountains"} /> }/>
+              <PhotoContainer data={mountains} title={"mountains"} /> }/>
             <Route path="/dogs" component={ () => 
-              <PhotoContainer data={this.state.dogs} title={"dogs"} /> }/>
+              <PhotoContainer data={dogs} title={"dogs"} /> }/>
             <Route path="/:query" render={  () => 
               <PhotoContainer data={this.state.photos} title={this.state.title} /> } />
             <Route component={NotFound}/>
