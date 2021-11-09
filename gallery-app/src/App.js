@@ -17,7 +17,6 @@ class App extends Component {
     this.state ={
       photos: [],
       title: [],
-      query: [],
       loading: true,
       search: ''
     }
@@ -27,9 +26,9 @@ class App extends Component {
     this.getPics();
   }
 
-  getPics = (query) => {
+  getPics = (query = 'rivers') => {
     this.setState({loading: true});
-    axios.get(axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`))
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
     .then(response => {
       this.setState ({
         photos: response.data.photos.photo,
@@ -63,7 +62,7 @@ class App extends Component {
               <PhotoContainer data={mountains} title={"mountains"} /> }/>
             <Route path="/dogs" component={ () => 
               <PhotoContainer data={dogs} title={"dogs"} /> }/>
-            <Route path="/:query" render={  () => 
+            <Route path="/:query" render={ () => 
               <PhotoContainer data={this.state.photos} title={this.state.title} /> } />
             <Route component={NotFound}/>
           </Switch>
