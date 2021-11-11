@@ -22,10 +22,12 @@ class App extends Component {
     }
   }
 
+  //mounts component to DOM
   componentDidMount() {
     this.getPics();
   }
 
+  //fetches the data for the requested search
   getPics = (query = 'rivers') => {
     this.setState({loading: true});
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
@@ -45,7 +47,7 @@ class App extends Component {
   }
 
 
-  
+  //renders the app
   render() {
     return(
       <BrowserRouter>
