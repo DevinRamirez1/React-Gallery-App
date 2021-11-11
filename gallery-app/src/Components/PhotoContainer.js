@@ -10,7 +10,7 @@ class PhotoContainer extends Component {
         }
     }
 
-
+    //renders the container that will hold all the photos
     render() {
         const results = this.props.data;
         let photos;
