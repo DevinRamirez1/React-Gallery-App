@@ -8,7 +8,7 @@ const NotFound = () => {
             <li>
                 <h3>404 Page Not Found</h3>
                 <p>Sorry, your search found no results.</p>
-                <NavLink to="/clouds">Home</NavLink>
+                <NavLink to="/rivers">Home</NavLink>
             </li>
         </ul>
     );
