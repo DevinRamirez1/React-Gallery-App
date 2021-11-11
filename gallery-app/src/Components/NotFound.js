@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+//creates a page to show the results weren't found
 const NotFound = () => {
     return (
         <ul>
