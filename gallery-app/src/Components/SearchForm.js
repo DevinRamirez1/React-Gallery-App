@@ -5,11 +5,23 @@ class SearchForm extends Component {
     state = {
         searchText: ''
     }
+    
+    //allows the history to fetch previous images again
+    componentDidUpdate(prevProps) {
+        if(prevProps.location.pathname !== this.props.location.pathname) {
+            if(this.props.location.pathname.includes('/search')){
+                const searchText = this.props.location.pathname.replace('/search/', '');
+                this.props.onSearch(searchText);
+            }
+        }
+    }
 
+    //changes searchText to target value
     onSearchChange = e => {
         this.setState({ searchText: e.target.value });
     }
 
+    //handles submission of the request
     handleSubmit = e => {
         e.preventDefault();
         this.props.onSearch(this.query.value);
@@ -18,6 +30,7 @@ class SearchForm extends Component {
         e.currentTarget.reset();
     }
 
+    //renders the search bar
     render() {
         return(
             <form className="search-form" onSubmit={this.handleSubmit} >
